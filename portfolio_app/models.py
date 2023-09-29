@@ -46,7 +46,6 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-
     #Returns the URL to access a particular instance of MyModelName.
     #if you define this method then Django will automatically
     # add a "View on Site" button to the model's record editing screens in the Admin site
