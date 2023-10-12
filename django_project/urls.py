@@ -19,7 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
 path('admin/', admin.site.urls),
-#connect path to portfolio_app urls
 path('', include('portfolio_app.urls')),
 ]
 

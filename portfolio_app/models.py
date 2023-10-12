@@ -17,7 +17,7 @@ class Portfolio(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=500, blank = False)
-    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, unique=True, default=None) 
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, default=None) 
 
     def __str__(self):
         return self.title
@@ -51,7 +51,10 @@ class Student(models.Model):
     # add a "View on Site" button to the model's record editing screens in the Admin site
     def get_absolute_url(self):
         return reverse('student-detail', args=[str(self.id)])
-    
+
+
+# commented out this code because not working
+'''  
 # Model to represent the relationship between projects and portfolios.
 # Each instance of this model will have a reference to a Portfolio and a Project,
 # creating a many-to-many relationship between portfolios and projects. T
@@ -66,4 +69,4 @@ class ProjectsInPortfolio(models.Model):
 class Meta:
     #ensures that each project is associated with only one portfolio
     unique_together = ('portfolio', 'project')
-    
+'''

@@ -1,0 +1,17 @@
+{% extends 'portfolio_app/base_template.html' %}
+
+
+{% block content %}
+<h1>Portfolio List</h1>
+{% if portfolio_list %}
+<ul>
+    {% for portfolio in portfolio_list %}
+    <li>
+        <a href="{{ portfolio.get_absolute_url }}">{{ portfolio.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no portfolio registered.</p>
+{% endif %}
+{% endblock %}

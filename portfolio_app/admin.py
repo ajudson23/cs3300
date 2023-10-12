@@ -6,4 +6,4 @@ from .models import *
 admin.site.register(Student)
 admin.site.register(Project)
 admin.site.register(Portfolio)
-admin.site.register(ProjectsInPortfolio)
+# admin.site.register(ProjectsInPortfolio)
