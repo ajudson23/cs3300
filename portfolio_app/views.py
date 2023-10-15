@@ -72,8 +72,21 @@ def updateProject(request, pk):
       if form.is_valid():
          form.save()
          return redirect('portfolio-detail', pk=project.portfolio.id)
-      else:
-        form = ProjectForm(instance=project)
-      context = {'form': form, 'project': project}
-      return render(request, 'portfolio_app/update_project.html', context)
+   else:
+      form = ProjectForm(instance=project)
+   context = {'form': form, 'project': project}
+   return render(request, 'portfolio_app/update_project.html', context)
+
+def updatePortfolio(request, pk):
+    portfolio = get_object_or_404(Portfolio, pk=pk)
+    if request.method == 'POST':
+        form = PortfolioForm(request.POST, instance=portfolio)
+        if form.is_valid():
+            form.save()
+            return redirect('student-detail', pk=portfolio.student.pk)
+    else:
+        form = PortfolioForm(instance=portfolio)
+    context = {'form': form, 'portfolio': portfolio}
+    return render(request, 'portfolio_app/update_portfolio.html', context)
+
 

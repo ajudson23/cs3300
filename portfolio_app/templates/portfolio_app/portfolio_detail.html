@@ -18,6 +18,7 @@
             {{ project.title }}:
             <a class="btn btn-primary" href="{{ project.get_absolute_url }}" role="button">View</a>
             <a class="btn btn-primary" href="{% url 'delete-project' pk=project.id %}" role="button">Delete</a>
+            <a class="btn btn-primary" href="{% url 'update-project' pk=project.pk %}" role="button">Update</a>
         </li>
         {% endfor %}
     </ul>
