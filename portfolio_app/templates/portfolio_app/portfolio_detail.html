@@ -17,11 +17,12 @@
         <li>
             {{ project.title }}:
             <a class="btn btn-primary" href="{{ project.get_absolute_url }}" role="button">View</a>
+            <a class="btn btn-primary" href="{% url 'delete-project' pk=project.id %}" role="button">Delete</a>
         </li>
         {% endfor %}
     </ul>
 {% else %}
-<p>There are no portfolio registered.</p>
+<p>There are no projects registered.</p>
 {% endif %}
 
 {% endblock %}

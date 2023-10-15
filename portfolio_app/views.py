@@ -1,9 +1,10 @@
 from typing import Any
 from django.views import generic
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Student, Portfolio, Project
-from .forms import ProjectForm
+from .models import *
+from .forms import *
+#from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -40,7 +41,7 @@ def createProject(request, portfolio_id):
         # Create a new dictionary with form data and portfolio_id
         project_data = request.POST.copy()
         project_data['portfolio_id'] = portfolio_id
-        
+
         form = ProjectForm(project_data)
         if form.is_valid():
             # Save the form without committing to the database
@@ -54,3 +55,25 @@ def createProject(request, portfolio_id):
 
     context = {'form': form}
     return render(request, 'portfolio_app/project_form.html', context)
+
+
+
+def deleteProject(request, pk):
+   project = get_object_or_404(Project, pk=pk)
+   if request.method == 'POST':
+      project.delete()
+      return redirect('portfolio-detail', pk=project.portfolio.id)
+   return render(request, 'portfolio_app/project_delete.html', {'project': project})
+
+def updateProject(request, pk):
+   project = get_object_or_404(Project, pk=pk)
+   if request.method == 'POST':
+      form = ProjectForm(request.POST, instance=project)
+      if form.is_valid():
+         form.save()
+         return redirect('portfolio-detail', pk=project.portfolio.id)
+      else:
+        form = ProjectForm(instance=project)
+      context = {'form': form, 'project': project}
+      return render(request, 'portfolio_app/update_project.html', context)
+
