@@ -1,0 +1,17 @@
+{% extends 'portfolio_app/base_template.html' %}
+{% block content %}
+
+<h1>Student Name:{{ student.name }}</h1>
+<p><strong>Email: </strong>{{ student.email }}</p>
+<p><strong>Major: </strong>{{ student.major }}</p>
+<p>
+        <strong>
+                Portfolio: 
+        </strong>
+        <a href="{{ student.portfolio.get_absolute_url }}">
+                {{ student.portfolio.title }}
+                <a class="btn btn-primary" href="{% url 'update-portfolio' pk=student.portfolio.pk %}"
+                        role="button">Update</a>
+        </a>
+</p>
+{% endblock %}

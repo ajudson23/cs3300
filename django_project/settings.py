@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Ashley Judson
-    'portfolio_app'
+    'portfolio_app',
+    'bootstrap5',
 ]
 
 # Add support for authenticating users
